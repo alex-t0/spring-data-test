@@ -17,27 +17,27 @@ import org.hibernate.annotations.Where;
 @Entity
 public class Contract implements ApprovableEntity {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	Long id;
+
 	@Column(nullable = false)
-    String name;
+	String name;
 
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
-    @JoinColumn(name="curator")
-    private User curator;
-	
+	@JoinColumn(name = "curator")
+	private User curator;
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = ReportData.class)
-    @JoinColumn(name="zreport")
-    private ReportData zreport;
-	
+	@JoinColumn(name = "zreport")
+	private ReportData zreport;
+
 	@Column
-    private String status;
-	
+	private String status;
+
 	@OneToMany(mappedBy = "entityId")
-    @Where(clause = "entitytype = 'contract'")
-    private List<Approval> approvals;
-	
+	@Where(clause = "entitytype = 'contract'")
+	private List<Approval> approvals;
+
 	public String getName() {
 		return name;
 	}
@@ -53,7 +53,7 @@ public class Contract implements ApprovableEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public User getCurator() {
 		return curator;
 	}
@@ -74,11 +74,11 @@ public class Contract implements ApprovableEntity {
 	public String getStatus() {
 		return status;
 	}
-	
-    public void setStatus(String status) {
+
+	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public List<Approval> getApprovals() {
 		return approvals;
 	}

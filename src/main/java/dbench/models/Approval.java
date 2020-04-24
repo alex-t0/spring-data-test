@@ -10,21 +10,21 @@ import javax.persistence.Transient;
 @Entity
 public class Approval {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	Long id;
+
 	@Column
-    private String result;
-	
+	private String result;
+
 	@Column(name = "entitytype")
-    private String entityType;
-	
+	private String entityType;
+
 	@Column(name = "entityId")
-    private Long entityId;
-	
+	private Long entityId;
+
 	@Transient
 	private ApprovableEntity entity; // ???
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -56,7 +56,7 @@ public class Approval {
 	public void setEntityId(Long entityId) {
 		this.entityId = entityId;
 	}
-	
+
 	public ApprovableEntity getEntity() {
 		return entity;
 	}

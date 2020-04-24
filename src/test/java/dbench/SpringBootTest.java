@@ -31,54 +31,54 @@ import dbench.repo.TenderRepository;
 public class SpringBootTest {
 	@Autowired
 	private MessageRepository messageRepository;
-	
+
 	@Autowired
 	private ConractRepository contractRepository;
-	
+
 	@Autowired
 	private TenderRepository tenderRepository;
-	
+
 	@org.junit.jupiter.api.Test
 	@Transactional
 	@Rollback(false)
 	public void Test() {
 		System.out.println("Hello from test");
-				
-		List<Message> messages = new ArrayList<Message>(); 
-		
+
+		List<Message> messages = new ArrayList<Message>();
+
 		for (Integer i = 0; i < 10; i++) {
 			Message m = new Message();
 			m.setText(UUID.randomUUID().toString());
 			messages.add(m);
 		}
-		
+
 		messageRepository.saveAll(messages);
 	}
-	
+
 	@org.junit.jupiter.api.Test
 	@Transactional
 	@Rollback(false)
 	public void ContractTest() {
-		Contract contract = contractRepository.findById(1L).get(); 
-		
+		Contract contract = contractRepository.findById(1L).get();
+
 		assertNotNull(contract);
 		assertNotNull(contract.getZreport());
 		assertNotNull(contract.getCurator());
-		
+
 		assertNotNull(contract.getZreport().getData());
 		assertNotNull(contract.getCurator().getName());
 	}
-	
+
 	@org.junit.jupiter.api.Test
 	@Transactional
 	@Rollback(false)
 	public void ApprovalTest() {
-		Contract contract = contractRepository.findById(1L).get(); 
-		
+		Contract contract = contractRepository.findById(1L).get();
+
 		assertTrue(contract.getApprovals().size() > 0);
-		
-		Tender tender = tenderRepository.findById(1L).get(); 
-		
+
+		Tender tender = tenderRepository.findById(1L).get();
+
 		assertTrue(tender.getApprovals().size() > 0);
 	}
 }

@@ -15,19 +15,19 @@ import org.hibernate.annotations.Where;
 public class Tender implements ApprovableEntity {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	Long id;
+
 	@OneToMany(mappedBy = "entityId")
-    @Where(clause = "entitytype = 'tender'")
-    private List<Approval> approvals;
-	
+	@Where(clause = "entitytype = 'tender'")
+	private List<Approval> approvals;
+
 	@Column(nullable = false)
-    String name;
-	
+	String name;
+
 	@Column
-    String status;
-	
+	String status;
+
 	public Long getId() {
 		return id;
 	}
