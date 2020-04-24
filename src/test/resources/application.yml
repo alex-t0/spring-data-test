@@ -1,0 +1,34 @@
+logging:
+    level:
+        org:
+            reflections: ERROR
+            hibernate:
+                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: TRACE
+            springframework:
+                security: DEBUG
+
+spring:
+    datasource:
+#        url: jdbc:sqlite:memory:myDb
+        url: jdbc:sqlite:myDb.db
+#        url: jdbc:postgresql://myhost.ru:5432/mydb?ssl=true&sslmode=require
+#        username: 
+#        password: 
+    jpa:
+        database-platform: org.hibernate.dialect.SQLiteDialect
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                temp:
+                    use_jdbc_metadata_defaults: false
+                enable_lazy_load_no_trans: true
+                format_sql: true
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+        show-sql: true
