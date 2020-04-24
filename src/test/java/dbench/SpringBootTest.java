@@ -1,6 +1,7 @@
 package dbench;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import dbench.models.Contract;
 import dbench.models.Message;
+import dbench.models.Tender;
 import dbench.repo.ConractRepository;
 import dbench.repo.MessageRepository;
+import dbench.repo.TenderRepository;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -31,6 +34,9 @@ public class SpringBootTest {
 	
 	@Autowired
 	private ConractRepository contractRepository;
+	
+	@Autowired
+	private TenderRepository tenderRepository;
 	
 	@org.junit.jupiter.api.Test
 	@Transactional
@@ -61,5 +67,18 @@ public class SpringBootTest {
 		
 		assertNotNull(contract.getZreport().getData());
 		assertNotNull(contract.getCurator().getName());
+	}
+	
+	@org.junit.jupiter.api.Test
+	@Transactional
+	@Rollback(false)
+	public void ApprovalTest() {
+		Contract contract = contractRepository.findById(1L).get(); 
+		
+		assertTrue(contract.getApprovals().size() > 0);
+		
+		Tender tender = tenderRepository.findById(1L).get(); 
+		
+		assertTrue(tender.getApprovals().size() > 0);
 	}
 }
