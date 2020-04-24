@@ -13,8 +13,9 @@ logging:
 
 spring:
     datasource:
-#        url: jdbc:sqlite:memory:myDb
-        url: jdbc:sqlite:myDb.db
+#        url: "jdbc:sqlite:"
+        url: "jdbc:sqlite::memory:"
+#        url: jdbc:sqlite:myDb.db
 #        url: jdbc:postgresql://myhost.ru:5432/mydb?ssl=true&sslmode=require
 #        username: 
 #        password: 
